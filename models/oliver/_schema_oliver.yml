@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: oliver_dim_customer
+    description: "Customer Dimension (cust_key + natural customer_id, name/contact/state)."
+
+  - name: oliver_dim_employee
+    description: "Employee Dimension (employee_key + HR attributes like hire_date and position)."
+
+  - name: oliver_dim_product
+    description: "Product Dimension (product_key, product_id, name, description)."
+
+  - name: oliver_dim_store
+    description: "Store Dimension (store_key + store name and location)."
+
+  - name: oliver_dim_date
+    description: "Date Dimension generated via dbt_date (dayofweek, month, quarter, year)."
+
+  - name: oliver_fact_sales
+    description: "POS line-level Sales Fact (cust_key, date_key, store_key, product_key, employee_key; quantity, dollars_sold, unit_price)."
