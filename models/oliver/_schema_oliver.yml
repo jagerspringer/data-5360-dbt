@@ -9,6 +9,10 @@ models:
 
   - name: oliver_dim_product
     description: "Product Dimension (product_key, product_id, name, description)."
+    columns:
+      - name: product_key
+        tests:
+          - unique
 
   - name: oliver_dim_store
     description: "Store Dimension (store_key + store name and location)."
@@ -18,9 +22,35 @@ models:
 
   - name: oliver_fact_sales
     description: "POS line-level Sales Fact (cust_key, date_key, store_key, product_key, employee_key; quantity, dollars_sold, unit_price)."
+    columns:
+      - name: product_key
+        description: "A foreign key to the product dimension"
+        tests:
+          - not_null
 
   - name: stg_employee_certifications
-    description: "Staging model for employee certifications. This model extracts data from the employee_certifications source and parses out certification_name, certification_cost, and certification_awarded_date from the JSON field."
-  
+    description: |
+      Staging model for employee certifications.
+      Each record represents a certification awarded to an employee.
+    columns:
+      - name: certification_name
+        tests:
+          - accepted_values:
+              values:
+                - "Food Handler"
+                - "ServSafe Manager"
+                - "Barista Level 1"
+                - "Barista Level 2"
+                - "First Aid/CPR"
+
   - name: fact_certification
-    description: "Fact table at the grain of one certification awarded to one employee on a specific date. Contains certification details (name and cost) and joins to dim_date and dim_employee for analysis."
+    description: |
+      Certification Fact.
+      The grain of this table is employee + certification + date.
+      Each record represents a certification awarded to an employee on a given date.
+    columns:
+      - name: employee_key
+        tests:
+          - relationships:
+              to: ref('oliver_dim_employee') # the model you want to compare to
+              field: employee_key            # the field on the model you want to compare to
