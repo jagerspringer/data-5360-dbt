@@ -1,0 +1,16 @@
+version: 2
+
+sources:
+  - name: group6_landing
+    database: group6_project
+    schema: group6_dw_source
+    tables:
+      - name: campaign_emails
+      - name: campaigns
+      - name: customers
+      - name: event_types
+      - name: orders
+      - name: products
+      - name: sales
+      - name: email_events
+      - name: dates
