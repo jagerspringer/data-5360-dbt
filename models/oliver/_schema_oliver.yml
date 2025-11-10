@@ -37,11 +37,15 @@ models:
         tests:
           - accepted_values:
               values:
-                - "Food Handler"
-                - "ServSafe Manager"
-                - "Barista Level 1"
-                - "Barista Level 2"
-                - "First Aid/CPR"
+                - "Cash Handling and Security"
+                - "Conflict Resolution"
+                - "Customer Service Excellence"
+                - "Inventory Management"
+                - "Leadership and Coaching"
+                - "Point of Sale Operations"
+                - "Product Knowledge Level 2"
+                - "Strategic Retail Operations"
+                - "Workplace Safety"
 
   - name: fact_certification
     description: |
